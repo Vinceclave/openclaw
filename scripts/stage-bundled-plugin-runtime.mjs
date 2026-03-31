@@ -2,6 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { removePathIfExists } from "./runtime-postbuild-shared.mjs";
+import { createRequire } from 'module';
+
+var require = createRequire(import.meta.url);
+var module = { exports: {} };
 
 function symlinkType() {
   return process.platform === "win32" ? "junction" : "dir";
